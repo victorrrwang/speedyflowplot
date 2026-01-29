@@ -1,0 +1,57 @@
+Package: speedyflowplot
+Title: Fast Flow Cytometry Plotting
+Version: 1.131
+Authors@R:
+    c(person(given = "Tereza",
+           family = "Kulichova",
+           role = c("aut"),
+           email = "kulichova.t@gmail.com"),
+    person(given = "Mirek",
+           family = "Kratochvil",
+           role = c("aut", "cre"),
+           email = "exa.exa@gmail.com",
+           comment = c(ORCID = "0000-0001-7356-4075")),
+    person(given = "Victor",
+           family = "Wang",
+           role = c("aut"),
+           email = "victorrwang@gmail.com"))
+Description: Fast plotting functions for flow cytometry data visualization.
+             C-based conversion of large scatterplot data to rasters plus other 
+             operations such as data blurring or data alpha blending. This package
+             incorporates code and concepts from the scattermore package 
+             (https://github.com/exaexa/scattermore) for fast scatterplot rendering.
+             Version 1.1 adds optimized functions using raw uint8_t arrays for 
+             improved performance.
+             1.111 remove the dependency on the 'flowWorkspace' package.
+             1.112 added reduced plotting margins to the 'plot' function. 
+             1.113 update f.parseChannels for exactly match "\\b" "V660-A"/"UV660-A"
+             1.114 update f.parseChannels overhall for better channel matching
+             1.115 update f.parseChannels for better channel matching "\\b"
+             1.116 supress warnings in f.parseChannels
+             1.117 plotting gates and trans error fixed
+             1.118 flowplot function added minimum cell number for density estimation
+             1.119 Fixed flowplot function bug when there is no cell
+             1.120 add gate color argument
+             1.121 log fsc ssc labels; shorter label options
+             1.122 remove unrelavant autoflow_colors variable
+             1.123 fix plotting background pop bug
+             1.124 add subtitle(right side) and margin color to the plot function
+             1.125 highlight tweaks
+             1.126 add highlight.alpha
+             1.127 highligh bug fix          
+             1.128 remove the annoying print message
+             1.130 fix class check bug
+             1.131 fix plot function bug when there is only 1 cell
+Imports: 
+    grDevices,
+    graphics,
+    stats,
+    scales,
+    viridis,
+    flowCore
+Suggests:
+    flowWorkspace
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

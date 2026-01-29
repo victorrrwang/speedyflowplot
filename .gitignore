@@ -1,0 +1,17 @@
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# RStudio files
+.Rproj.user/
+*.Rproj
+
+# Build artifacts in releases directory
+releases/*.tar.gz
+
+# Temporary files
+*.tmp
+*.log

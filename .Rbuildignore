@@ -1,0 +1,11 @@
+^codecov\.yml$
+^doc$
+^\.github$
+^\.idea$
+^LICENSE$
+^media$
+^Meta$
+^pack_cran.sh$
+^style.sh$
+^.*\.Rproj$
+^\.Rproj\.user$
