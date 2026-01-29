@@ -1,3 +1,12 @@
+# speedyflowplot 1.14
+
+## Package Structure Updates
+
+* Updated package documentation to credit the scattermore package
+* Added acknowledgments section in README files
+* Updated DESCRIPTION to include scattermore attribution
+* Added AI-generated content disclaimer to main README
+
 # speedyflowplot 1.1
 
 ## New Features

@@ -311,7 +311,7 @@ Key C++ functions:
 
 ## Version
 
-Current version: **1.131**
+Current version: **1.14**
 
 See [`pkg/NEWS.md`](pkg/NEWS.md) for version history and changelog.
 
