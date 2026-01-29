@@ -46,7 +46,8 @@ flowPlot <- function(obj,
                      plot_ceiling = NA,
                      density.overlay = TRUE, 
                      dens.color = "red",
-                     dens.alpha = 0.5
+                     dens.alpha = 0.5,
+                     show.tick.labels = TRUE
                      ) {
   if (class(obj)[1] == "matrix") {
     dat <- obj[, channels]
@@ -110,6 +111,8 @@ flowPlot <- function(obj,
     plot(c(),
          xlim = xlim, xlab = channels[1], 
          ylim = ylim, ylab = channels[2], 
+         xaxt = if(show.tick.labels) "s" else "n",  # Add this
+         yaxt = if(show.tick.labels) "s" else "n"    # Add this
     )
     title(title, adj = 0, line = 0.3, cex.main = title.font.size)
     rasterImage(rstr,
