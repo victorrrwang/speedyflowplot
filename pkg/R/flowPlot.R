@@ -131,7 +131,7 @@ flowPlot <- function(obj, ids,
 
       rgbwt <- blend_rgba_float3(l.rgbwt, alpha = 0.6) # it doesnt affect non overlapping pixels
 
-      rstr <- rgba_int_to_raster(rgbwt_to_rgba_int(rgbwt))
+      rstr <- rgba_int_to_raster(rgba_float_to_rgba_int(rgbwt))
 
     }
 
