@@ -42,7 +42,7 @@ flowPlot <- function(obj, ids,
                      title = "",
                      title.font.size = 1.2,
                      res = 256,
-                     color = c("#000000","#f70505"),
+                     color = c("#000000","#f70505"), alpha = 0.6,
                      xlim = NA,
                      ylim = NA,
                      plot_ceiling = NA,
@@ -132,7 +132,7 @@ flowPlot <- function(obj, ids,
         return(rgbwt)
       })
 
-      rgbwt <- blend_rgba_float3(l.rgbwt, alpha = 0.6) # it doesnt affect non overlapping pixels
+      rgbwt <- blend_rgba_float3(l.rgbwt, alpha = alpha) # it doesnt affect non overlapping pixels
 
       rstr <- rgba_int_to_raster(rgba_float_to_rgba_int(rgbwt))
 
