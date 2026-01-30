@@ -1,6 +1,6 @@
 Package: speedyflowplot
 Title: Fast Flow Cytometry Plotting
-Version: 1.14
+Version: 1.15
 Authors@R:
     c(person(given = "Tereza",
            family = "Kulichova",
@@ -43,6 +43,7 @@ Description: Fast plotting functions for flow cytometry data visualization.
              1.130 fix class check bug
              1.131 fix plot function bug when there is only 1 cell
              1.14 package structure updates and added scattermore credits
+             1.15 flowPlot now supports multiple populations
 Imports: 
     grDevices,
     graphics,

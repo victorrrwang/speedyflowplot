@@ -1,3 +1,12 @@
+# speedyflowplot 1.15
+
+## New Features
+
+* `flowPlot()` now supports multiple populations via the `ids` parameter
+  * Multiple populations can be visualized with different colors
+  * Uses alpha blending to combine overlapping populations
+  * Color parameter accepts a vector of colors for each population
+
 # speedyflowplot 1.14
 
 ## Package Structure Updates

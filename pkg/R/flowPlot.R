@@ -19,14 +19,15 @@
 #' Create a 2D density plot for flow cytometry data
 #'
 #' A simple implementation of scattermore functionality for flow cytometry data visualization.
+#' Supports single or multiple populations with different colors.
 #'
 #' @param obj A flow frame, matrix, or data frame containing flow cytometry data
-#' @param ids IDs of the cells use to divide the data into groups
+#' @param ids IDs of the cells use to divide the data into groups (optional, for multiple populations)
 #' @param channels Channels to plot (column indices or names)
 #' @param title Plot title
 #' @param title.font.size Font size for the title
 #' @param res Resolution of the plot
-#' @param color Color for the points
+#' @param color Color for the points. For multiple populations, provide a vector of colors (one per population)
 #' @param xlim X-axis limits
 #' @param ylim Y-axis limits
 #' @param plot_ceiling Maximum value for plotting
@@ -41,7 +42,7 @@ flowPlot <- function(obj, ids,
                      title = "",
                      title.font.size = 1.2,
                      res = 256,
-                     color = c("#00000010","#f7050591"),
+                     color = c("#000000","#f70505"),
                      xlim = NA,
                      ylim = NA,
                      plot_ceiling = NA,
@@ -101,12 +102,13 @@ flowPlot <- function(obj, ids,
     par(pty = "s") # make the plot square
     
     if(missing(ids)) {
-
+    
+    clr = paste0(color[[1]], "10")
     rgbwt <- scatter_points_rgbwt(dat, 
                                   xlim = xlim,
                                   ylim = ylim,
                                   out_size = c(res, res), 
-                                  RGBA = col2rgb(color[[1]], alpha=TRUE))
+                                  RGBA = col2rgb(clr, alpha=TRUE))
     rgbwt[,,5] <- 1-rgbwt[,,5]
     rgbwt[,,5][rgbwt[,,5] == 0] <- 1
     
@@ -118,11 +120,12 @@ flowPlot <- function(obj, ids,
       id_categories <- unique(ids)
       l.rgbwt <- lapply(seq_along(id_categories), function(x) {
         dat_subset <- dat[which(ids == id_categories[x]), ]
+        clr = paste0(color[[x]], "10")
         rgbwt <- scatter_points_rgbwt(dat_subset, 
                                       xlim = xlim,
                                       ylim = ylim,
                                       out_size = c(res, res), 
-                                      RGBA = col2rgb(color[[x]], alpha=TRUE))
+                                      RGBA = col2rgb(clr, alpha=TRUE))
         rgbwt[,,5] <- 1-rgbwt[,,5]
         rgbwt[,,5][rgbwt[,,5] == 0] <- 1
         rgbwt <- rgbwt_to_rgba_float(rgbwt)
