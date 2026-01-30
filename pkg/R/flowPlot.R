@@ -21,6 +21,7 @@
 #' A simple implementation of scattermore functionality for flow cytometry data visualization.
 #'
 #' @param obj A flow frame, matrix, or data frame containing flow cytometry data
+#' @param ids IDs of the cells use to divide the data into groups
 #' @param channels Channels to plot (column indices or names)
 #' @param title Plot title
 #' @param title.font.size Font size for the title
@@ -35,7 +36,7 @@
 #'
 #' @return A plot of the flow cytometry data
 #' @export
-flowPlot <- function(obj,
+flowPlot <- function(obj, ids,
                      channels,
                      title = "",
                      title.font.size = 1.2,
@@ -99,6 +100,8 @@ flowPlot <- function(obj,
     
     par(pty = "s") # make the plot square
     
+    if(missing(ids)) {
+
     rgbwt <- scatter_points_rgbwt(dat, 
                                   xlim = xlim,
                                   ylim = ylim,
@@ -106,7 +109,30 @@ flowPlot <- function(obj,
                                   RGBA = col2rgb(color, alpha=TRUE))
     rgbwt[,,5] <- 1-rgbwt[,,5]
     rgbwt[,,5][rgbwt[,,5] == 0] <- 1
+    
     rstr <- rgba_int_to_raster(rgbwt_to_rgba_int(rgbwt))
+
+    }
+    else {
+
+      l.rgbwt <- lapply(ids, function(x) {
+        dat_subset <- dat[ids == x, ]
+        rgbwt <- scatter_points_rgbwt(dat_subset, 
+                                      xlim = xlim,
+                                      ylim = ylim,
+                                      out_size = c(res, res), 
+                                      RGBA = col2rgb(color, alpha=TRUE))
+        rgbwt[,,5] <- 1-rgbwt[,,5]
+        rgbwt[,,5][rgbwt[,,5] == 0] <- 1
+        return(rgbwt)
+      })
+
+      rgbwt <- blend_rgba_float3(l.rgbwt, alpha = 0.6) # it doesnt affect non overlapping pixels
+
+      rstr <- rgba_int_to_raster(rgbwt_to_rgba_int(rgbwt))
+
+    }
+
     
     plot(c(),
          xlim = xlim, xlab = channels[1], 
