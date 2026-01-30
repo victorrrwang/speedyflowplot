@@ -125,7 +125,7 @@ flowPlot <- function(obj, ids,
                                       RGBA = col2rgb(color[[x]], alpha=TRUE))
         rgbwt[,,5] <- 1-rgbwt[,,5]
         rgbwt[,,5][rgbwt[,,5] == 0] <- 1
-        rgbwt <- rgbwt_to_rgba_int(rgbwt)
+        rgbwt <- rgbwt_to_rgba_float(rgbwt)
         return(rgbwt)
       })
 
