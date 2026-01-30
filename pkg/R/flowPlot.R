@@ -41,7 +41,7 @@ flowPlot <- function(obj, ids,
                      title = "",
                      title.font.size = 1.2,
                      res = 256,
-                     color = "#00000010",
+                     color = c("#00000010","#f7050591"),
                      xlim = NA,
                      ylim = NA,
                      plot_ceiling = NA,
@@ -106,7 +106,7 @@ flowPlot <- function(obj, ids,
                                   xlim = xlim,
                                   ylim = ylim,
                                   out_size = c(res, res), 
-                                  RGBA = col2rgb(color, alpha=TRUE))
+                                  RGBA = col2rgb(color[[1]], alpha=TRUE))
     rgbwt[,,5] <- 1-rgbwt[,,5]
     rgbwt[,,5][rgbwt[,,5] == 0] <- 1
     
@@ -115,13 +115,14 @@ flowPlot <- function(obj, ids,
     }
     else {
 
-      l.rgbwt <- lapply(ids, function(x) {
-        dat_subset <- dat[ids == x, ]
+      id_categories <- unique(ids)
+      l.rgbwt <- lapply(seq_along(id_categories), function(x) {
+        dat_subset <- dat[which(ids == id_categories[x]), ]
         rgbwt <- scatter_points_rgbwt(dat_subset, 
                                       xlim = xlim,
                                       ylim = ylim,
                                       out_size = c(res, res), 
-                                      RGBA = col2rgb(color, alpha=TRUE))
+                                      RGBA = col2rgb(color[[x]], alpha=TRUE))
         rgbwt[,,5] <- 1-rgbwt[,,5]
         rgbwt[,,5][rgbwt[,,5] == 0] <- 1
         return(rgbwt)
